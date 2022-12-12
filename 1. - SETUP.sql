@@ -12,7 +12,7 @@ CREATE TABLE Interns (
 	LastName VARCHAR(30) NOT NULL,
 	Gender Gender NOT NULL,
 	-- Personal Id number length must be equal to 11.
-	PersonalIdNumber VARCHAR(11) NOT NULL CHECK(
+	PersonalIdNumber VARCHAR(11) NOT NULL UNIQUE CHECK(
 		LENGTH(PersonalIdNumber) = 11
 	),
 	-- Age must be a value between 16 and 24.
@@ -30,14 +30,10 @@ CREATE TABLE Members (
 	LastName VARCHAR(30) NOT NULL,
 	Gender Gender NOT NULL,
 	-- Personal Id number length must be equal to 11.
-	PersonalIdNumber VARCHAR(11) NOT NULL CHECK(
+	PersonalIdNumber VARCHAR(11) NOT NULL UNIQUE CHECK(
 		LENGTH(PersonalIdNumber) = 11
 	),
-	-- Age must be a value between 16 and 24.
-	DateOfBirth DATE NOT NULL CHECK (
-		DATE_PART('year' ,AGE(NOW(), DateOfBirth)) >= 16 AND
-		DATE_PART('year' ,AGE(NOW(), DateOfBirth)) <= 24
-	),
+	DateOfBirth DATE NOT NULL,
 	ResidenceCityId INT REFERENCES Cities(Id) NOT NULL
 );
 
@@ -65,7 +61,7 @@ CREATE TABLE Assignments (
 	Description VARCHAR(3000),
 	FieldId INT REFERENCES Fields(Id) NOT NULL,
 	-- Assignment does not have to be used in a internship, hence why it is nullable.
-	InterhsipId INT REFERENCES Internships(Id)
+	InternshipId INT REFERENCES Internships(Id)
 );
 
 -- Entity InternsAssignments
@@ -82,9 +78,9 @@ CREATE TABLE InternsAssignments (
 -- Entity InternsFieldsInternships
 CREATE TYPE InternStatus AS ENUM ('Kicked', 'Active', 'Done');
 CREATE TABLE InternsFieldsInternships (
-	InternId INT NOT NULL,
-	FieldId INT NOT NULL,
-	InternshipId INT NOT NULL,
+	InternId INT REFERENCES Interns(Id),
+	FieldId INT REFERENCES Fields(Id),
+	InternshipId INT REFERENCES Internships(Id),
 	PRIMARY KEY(InternId, FieldId, InternshipId),
 	Status InternStatus NOT NULL
 )
