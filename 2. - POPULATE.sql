@@ -10,7 +10,7 @@ insert into Cities (Id, Name) values (8, 'Moscow');
 insert into Cities (Id, Name) values (9, 'Jepara');
 insert into Cities (Id, Name) values (10, 'Oss');
 
-SELECT * FROM Cities;
+--SELECT * FROM Cities;
 
 -- Populate Members
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (1,'Ante', 'Antic', 'Male', '87232951558', '1999-08-10', 1);
@@ -18,7 +18,7 @@ insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBir
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (3,'Ana', 'Anic', 'Male', '87097951558', '2001-03-22', 2);
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (4,'Klara', 'Klaric', 'Male', '87133341558', '2000-01-30', 1);
 
-SELECT * FROM Members;
+--SELECT * FROM Members;
 
 -- Populate Fields
 insert into Fields (Id,ManagerId,Name) values (1,1,'Development');
@@ -26,7 +26,7 @@ insert into Fields (Id,Managerid,Name) values (2,2,'Design');
 insert into Fields (Id,Managerid,Name) values (3,3,'Multimedia');
 insert into Fields (Id,Managerid,Name) values (4,4,'Marketing');
 
-SELECT * FROM Fields;
+--SELECT * FROM Fields;
 
 -- Populate Interns
 insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (1, 'Björn', 'Schimon', 'Female', '91906655002', '2005-10-03', 1);
@@ -50,7 +50,7 @@ insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBi
 insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (19, 'Médiamass', 'Paye', 'Female', '06822628921', '2002-06-08', 2);
 insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (20, 'Réjane', 'Ryan', 'Female', '16761070928', '2000-03-07', 1);
 																											  
-SELECT * FROM Interns;
+--SELECT * FROM Interns;
 
 -- Populate Internships
 insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (1, '2018-04-17T13:15:03Z', '2018-10-20T11:29:45Z', 'Past',1);
@@ -58,7 +58,7 @@ insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (2, '2021-
 insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (3, '2022-09-09T16:14:08Z', '2023-10-26T01:41:37Z', 'Ongoing',1);
 insert into Internships (Id, StartAt, EndAt, Phase) values (4, '2023-11-17T20:21:50Z', '2024-07-14T15:03:13Z', 'Planned');
 
-SELECT * FROM Internships;
+--SELECT * FROM Internships;
 
 -- Populate Assignments
 insert into Assignments (Id, Title, Description, FieldId, InternshipId) values (1, 'Charlie', 'Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.', 1, 2);
@@ -67,7 +67,7 @@ insert into Assignments (Id, Title, Description, FieldId, InternshipId) values (
 insert into Assignments (Id, Title, Description, FieldId, InternshipId) values (4, 'Bravo', 'In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', 4, 1);
 insert into Assignments (Id, Title, Description, FieldId, InternshipId) values (5, 'Papa', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.', 1, 1);
 
-SELECT * FROM Assignments;
+--SELECT * FROM Assignments;
 
 -- Populate InternsAssignments
 insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (1, 1, 1, 1);
@@ -75,14 +75,17 @@ insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values 
 insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (3, 3, 3, 3);
 insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (4, 4, 1, 4);
 insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (5, 5, 1, 5);
+insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (8, 5, 1, 5);
 
-SELECT * FROM InternsAssignments;
+--SELECT * FROM InternsAssignments;
 
 -- Populate InternsFieldsInternships
 insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (1, 1, 1, 'Kicked');
 insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (2, 2, 1, 'Done');
 insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (3, 3, 2, 'Active');
 insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (4, 4, 2, 'Active');
-insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (5, 1, 1, 'Kicked');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (5, 1, 3, 'Active');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (10, 1, 3, 'Active');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (16, 1, 3, 'Active');
 
-SELECT * FROM InternsFieldsInternships;
+--SELECT * FROM InternsFieldsInternships;
