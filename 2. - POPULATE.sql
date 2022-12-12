@@ -1,12 +1,12 @@
 -- Populate Cities
 insert into Cities (Id, Name) values (1, 'Split');
 insert into Cities (Id, Name) values (2, 'Zagreb');
-insert into Cities (Id, Name) values (3, 'Yiyang');
+insert into Cities (Id, Name) values (3, 'Berlin');
 insert into Cities (Id, Name) values (4, 'Calabaca');
 insert into Cities (Id, Name) values (5, 'Tongjiaxi');
 insert into Cities (Id, Name) values (6, 'Sorongan');
 insert into Cities (Id, Name) values (7, 'Nechanice');
-insert into Cities (Id, Name) values (8, 'Apopa');
+insert into Cities (Id, Name) values (8, 'Moscow');
 insert into Cities (Id, Name) values (9, 'Jepara');
 insert into Cities (Id, Name) values (10, 'Oss');
 
@@ -14,7 +14,7 @@ SELECT * FROM Cities;
 
 -- Populate Members
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (1,'Ante', 'Antic', 'Male', '87232951558', '1999-08-10', 1);
-insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (2,'Mate', 'Matic', 'Male', '87295443558', '2006-03-11', 3);
+insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (2,'Mate', 'Marin', 'Male', '87295443558', '2006-03-11', 3);
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (3,'Ana', 'Anic', 'Male', '87097951558', '2001-03-22', 2);
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (4,'Klara', 'Klaric', 'Male', '87133341558', '2000-01-30', 1);
 
@@ -54,8 +54,9 @@ SELECT * FROM Interns;
 
 -- Populate Internships
 insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (1, '2018-04-17T13:15:03Z', '2018-10-20T11:29:45Z', 'Past',1);
-insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (2, '2022-09-09T16:14:08Z', '2023-10-26T01:41:37Z', 'Ongoing',1);
-insert into Internships (Id, StartAt, EndAt, Phase) values (3, '2023-11-17T20:21:50Z', '2024-07-14T15:03:13Z', 'Planned');
+insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (2, '2021-09-09T16:14:08Z', '2022-10-26T01:41:37Z', 'Past',1);
+insert into Internships (Id, StartAt, EndAt, Phase, ManagerId) values (3, '2022-09-09T16:14:08Z', '2023-10-26T01:41:37Z', 'Ongoing',1);
+insert into Internships (Id, StartAt, EndAt, Phase) values (4, '2023-11-17T20:21:50Z', '2024-07-14T15:03:13Z', 'Planned');
 
 SELECT * FROM Internships;
 
