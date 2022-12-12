@@ -5,7 +5,7 @@ CREATE TABLE Cities (
 );
 
 -- Entity Interns
-CREATE TYPE Gender AS ENUM ('Female', 'Male')
+CREATE TYPE Gender AS ENUM ('Female', 'Male');
 CREATE TABLE Interns (
 	Id SERIAL PRIMARY KEY,
 	FirstName VARCHAR(30) NOT NULL,
@@ -64,7 +64,8 @@ CREATE TABLE Assignments (
 	Title VARCHAR(30) NOT NULL,
 	Description VARCHAR(3000),
 	FieldId INT REFERENCES Fields(Id) NOT NULL,
-	InterhsipId INT REFERENCES Internships(Id) -- Assignment can be for future use (no existing Internships.Id)
+	-- Assignment does not have to be used in a internship, hence why it is nullable.
+	InterhsipId INT REFERENCES Internships(Id)
 );
 
 -- Entity InternsAssignments
@@ -73,17 +74,17 @@ CREATE TABLE InternsAssignments (
 	AssignmentId INT REFERENCES Assignments(Id),
 	PRIMARY KEY (InternId, AssignmentId),
 	Reviewer INT REFERENCES Members(Id),
-	Grade INT NOT NULL
+	Grade INT NOT NULL CHECK (
+		Grade >= 1 AND Grade <= 5
+	)
 );
 
 -- Entity InternsFieldsInternships
-CREATE TYPE InternStatus AS ENUM ('Kicked', 'Active', 'Done')
+CREATE TYPE InternStatus AS ENUM ('Kicked', 'Active', 'Done');
 CREATE TABLE InternsFieldsInternships (
 	InternId INT NOT NULL,
 	FieldId INT NOT NULL,
 	InternshipId INT NOT NULL,
 	PRIMARY KEY(InternId, FieldId, InternshipId),
 	Status InternStatus NOT NULL
-	
 )
-
