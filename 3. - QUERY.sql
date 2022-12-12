@@ -1,7 +1,7 @@
 -- Output first and last names of members who live outside of Split:
 SELECT m.FirstName, m.LastName, c.Name as City FROM Members m
 JOIN Cities c ON c.id = m.ResidenceCityId
-WHERE c.Name = 'Split';
+WHERE c.Name != 'Split';
 
 -- Output start and end date of every internship, sorted descending by start date:
 SELECT i.StartAt::date,i.EndAt::date FROM Internships i
