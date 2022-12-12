@@ -1,4 +1,4 @@
--- Populate Cities (10 entries)
+-- Populate Cities
 insert into Cities (Id, Name) values (1, 'Split');
 insert into Cities (Id, Name) values (2, 'Zagreb');
 insert into Cities (Id, Name) values (3, 'Yiyang');
@@ -12,7 +12,7 @@ insert into Cities (Id, Name) values (10, 'Oss');
 
 SELECT * FROM Cities;
 
--- Populate Members (4 entries)
+-- Populate Members
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (1,'Ante', 'Antic', 'Male', '87232951558', '1999-08-10', 1);
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (2,'Mate', 'Matic', 'Male', '87295443558', '2006-03-11', 3);
 insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (3,'Ana', 'Anic', 'Male', '87097951558', '2001-03-22', 2);
@@ -20,7 +20,7 @@ insert into Members (Id,FirstName, LastName, Gender, PersonalIdNumber, DateOfBir
 
 SELECT * FROM Members;
 
--- Populate Fields (4 entries)
+-- Populate Fields
 insert into Fields (Id,ManagerId,Name) values (1,1,'Development');
 insert into Fields (Id,Managerid,Name) values (2,2,'Design');
 insert into Fields (Id,Managerid,Name) values (3,3,'Multimedia');
@@ -28,7 +28,7 @@ insert into Fields (Id,Managerid,Name) values (4,4,'Marketing');
 
 SELECT * FROM Fields;
 
--- Populate Interns (20 entries)
+-- Populate Interns
 insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (1, 'Björn', 'Schimon', 'Female', '91906655002', '2005-10-03', 1);
 insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (2, 'Maéna', 'Horribine', 'Female', '38111571833', '2003-09-29', 1);
 insert into Interns (Id, FirstName, LastName, Gender, PersonalIdNumber, DateOfBirth, ResidenceCityId) values (3, 'Maëline', 'Baiyle', 'Female', '14976039939', '2005-02-11', 1);
@@ -69,7 +69,19 @@ insert into Assignments (Id, Title, Description, FieldId, InternshipId) values (
 SELECT * FROM Assignments;
 
 -- Populate InternsAssignments
+insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (1, 1, 1, 1);
+insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (2, 2, 4, 2);
+insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (3, 3, 3, 3);
+insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (4, 4, 1, 4);
+insert into InternsAssignments (InternId, AssignmentId, Reviewer, Grade) values (5, 5, 1, 5);
+
+SELECT * FROM InternsAssignments;
 
 -- Populate InternsFieldsInternships
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (1, 1, 1, 'Kicked');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (2, 2, 1, 'Done');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (3, 3, 2, 'Active');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (4, 4, 2, 'Active');
+insert into InternsFieldsInternships (InternId, FieldId, InternshipId, Status) values (5, 1, 1, 'Kicked');
 
-
+SELECT * FROM InternsFieldsInternships;
