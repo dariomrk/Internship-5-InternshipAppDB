@@ -4,37 +4,51 @@ CREATE TABLE Cities (
 	Name VARCHAR(30) NOT NULL
 );
 
--- Entity People
-CREATE TABLE People (
+-- Entity Interns
+CREATE TYPE Gender AS ENUM ('Female', 'Male')
+CREATE TABLE Interns (
 	Id SERIAL PRIMARY KEY,
 	FirstName VARCHAR(30) NOT NULL,
 	LastName VARCHAR(30) NOT NULL,
-	PersonalIdNumber CHAR(11) NOT NULL,
-	DateOfBirth DATE NOT NULL,
+	Gender Gender NOT NULL,
+	-- Personal Id number length must be equal to 11.
+	PersonalIdNumber VARCHAR(11) NOT NULL CHECK(
+		LENGTH(PersonalIdNumber) = 11
+	),
+	-- Age must be a value between 16 and 24.
+	DateOfBirth DATE NOT NULL CHECK (
+		DATE_PART('year' ,AGE(NOW(), DateOfBirth)) >= 16 AND
+		DATE_PART('year' ,AGE(NOW(), DateOfBirth)) <= 24
+	),
 	ResidenceCityId INT REFERENCES Cities(Id) NOT NULL
 );
 
 -- Entity Members
 CREATE TABLE Members (
 	Id SERIAL PRIMARY KEY,
-	PersonId INT REFERENCES People(Id) NOT NULL
+	FirstName VARCHAR(30) NOT NULL,
+	LastName VARCHAR(30) NOT NULL,
+	Gender Gender NOT NULL,
+	-- Personal Id number length must be equal to 11.
+	PersonalIdNumber VARCHAR(11) NOT NULL CHECK(
+		LENGTH(PersonalIdNumber) = 11
+	),
+	-- Age must be a value between 16 and 24.
+	DateOfBirth DATE NOT NULL CHECK (
+		DATE_PART('year' ,AGE(NOW(), DateOfBirth)) >= 16 AND
+		DATE_PART('year' ,AGE(NOW(), DateOfBirth)) <= 24
+	),
+	ResidenceCityId INT REFERENCES Cities(Id) NOT NULL
 );
 
 -- Entity Internships
-CREATE TYPE InternshipPhase AS ENUM ('Ongoing', 'Past', 'Planned'); -- Fixed number set of values
+CREATE TYPE InternshipPhase AS ENUM ('Ongoing', 'Past', 'Planned');
 CREATE TABLE Internships (
 	Id SERIAL PRIMARY KEY,
 	StartAt TIMESTAMP,
 	EndAt TIMESTAMP,
 	Phase InternshipPhase NOT NULL,
 	ManagerId INT REFERENCES Members(Id)
-);
-
--- Entity Interns
-CREATE TABLE Interns (
-	Id SERIAL PRIMARY KEY,
-	PersonId INT REFERENCES People(Id),
-	InternshipId INT REFERENCES Internships(Id)
 );
 
 -- Entity Fields
@@ -62,18 +76,14 @@ CREATE TABLE InternsAssignments (
 	Grade INT NOT NULL
 );
 
--- Entity InternsFields
-CREATE TYPE InternStatus AS ENUM ('Intern', 'Kicked', 'InternshipDone'); -- Fixed set of values
-CREATE TABLE InternsFields (
-	InternId INT REFERENCES Interns(Id),
-	FieldId INT REFERENCES Fields(Id),
-	Status InternStatus NOT NULL,
-	InternshipId INT REFERENCES Internships(Id) NOT NULL
-);
+-- Entity InternsFieldsInternships
+CREATE TYPE InternStatus AS ENUM ('Kicked', 'Active', 'Done')
+CREATE TABLE InternsFieldsInternships (
+	InternId INT NOT NULL,
+	FieldId INT NOT NULL,
+	InternshipId INT NOT NULL,
+	PRIMARY KEY(InternId, FieldId, InternshipId),
+	Status InternStatus NOT NULL
+	
+)
 
--- Entity InternshipsInterns
-CREATE TABLE InternshipsInterns (
-	InternId INT REFERENCES Interns(Id),
-	InternshipId INT REFERENCES Internships(Id),
-	PRIMARY KEY (InternId,InternshipId)
-);
